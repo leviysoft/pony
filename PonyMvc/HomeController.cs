@@ -1,6 +1,7 @@
 ﻿using System;
 using Pony;
 using Pony.Views;
+using PonyMvc.Demo.Home;
 using StructureMap;
 
 namespace PonyMvc.Demo
@@ -13,7 +14,7 @@ namespace PonyMvc.Demo
 
         public Lazy<IView> Index()
         {
-            return View<Greeting>();
+            return View<MainForm>();
         }
     }
 }

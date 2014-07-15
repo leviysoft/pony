@@ -1,11 +1,11 @@
 ﻿using System.Windows.Forms;
 using Pony.Views;
 
-namespace PonyMvc.Demo
+namespace PonyMvc.Demo.Home
 {
-    public partial class Greeting : Form, IView
+    public partial class MainForm : Form, IView
     {
-        public Greeting()
+        public MainForm()
         {
             InitializeComponent();
         }

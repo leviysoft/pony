@@ -50,17 +50,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Greeting.cs">
+    <Compile Include="Domain\Item.cs" />
+    <Compile Include="HomeController.cs" />
+    <Compile Include="Home\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Greeting.Designer.cs">
-      <DependentUpon>Greeting.cs</DependentUpon>
+    <Compile Include="Home\AddItem.Designer.cs">
+      <DependentUpon>AddItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomeController.cs" />
+    <Compile Include="Home\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Greeting.resx">
-      <DependentUpon>Greeting.cs</DependentUpon>
+    <EmbeddedResource Include="Home\AddItem.resx">
+      <DependentUpon>AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

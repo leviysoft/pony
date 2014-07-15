@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Pony;
 using Pony.Views;
 using StructureMap.Graph;
@@ -13,6 +14,7 @@ namespace PonyMvc.Demo
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
             var demoApp = new PonyApplication();
             demoApp.ConfigureApplicationContainer(cfg => cfg.Scan(scan =>
             {
