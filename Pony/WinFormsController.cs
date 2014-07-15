@@ -1,4 +1,5 @@
-﻿using Pony.Views;
+﻿using System;
+using Pony.Views;
 using StructureMap;
 
 namespace Pony
@@ -12,11 +13,11 @@ namespace Pony
             _container = container;
         }
 
-        public void View<TView>()
+        public Lazy<IView> View<TView>()
             where TView : IView
         {
             var view = _container.GetInstance<TView>();
-            view.ShowDialog();
+            return new Lazy<IView>(() => view);
         }
     }
 }

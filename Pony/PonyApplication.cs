@@ -1,4 +1,5 @@
 ﻿using System;
+using Pony.Views;
 using StructureMap;
 
 namespace Pony
@@ -17,9 +18,9 @@ namespace Pony
             Container.Configure(config);
         }
 
-        public void Start<TController>(Action<TController> action)
+        public void Start<TController>(Func<TController, Lazy<IView>> action)
         {
-            action(Container.GetInstance<TController>());
+            action(Container.GetInstance<TController>()).Value.ShowDialog();
         }
     }
 }
