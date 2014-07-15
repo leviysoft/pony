@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Pony;
+using Pony.Views;
+using StructureMap.Graph;
 
-namespace PonyMvc
+namespace PonyMvc.Demo
 {
     static class Program
     {
@@ -14,9 +13,15 @@ namespace PonyMvc
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            var demoApp = new PonyApplication();
+            demoApp.ConfigureApplicationContainer(cfg => cfg.Scan(scan =>
+            {
+                scan.AssembliesFromApplicationBaseDirectory();
+                scan.TheCallingAssembly();
+                scan.AddAllTypesOf<IView>();
+                scan.AddAllTypesOf<WinFormsController>();
+            }));
+            demoApp.Start<HomeController>(c => c.Index());
         }
     }
 }
