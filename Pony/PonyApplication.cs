@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Pony.ControllerInterfaces;
 using Pony.Views;
 using StructureMap;
 
@@ -20,59 +21,24 @@ namespace Pony
             Container.Configure(config);
         }
 
-        public void Start<TController>(Func<TController, IView> action)
+        public DialogResult Show<TView>() where TView : IView
         {
-            action(Container.GetInstance<TController>()).ShowDialog();
+            return Container.GetInstance<TView>().ShowDialog();
         }
 
-        private static void ProcessEdit<T>(IView<T> view, 
-            Action<T> onOk = null,
-            Action<T> onCancel = null,
-            Action<T> onAbort = null,
-            Action<T> onRetry = null,
-            Action<T> onIgnore = null,
-            Action<T> onYes = null,
-            Action<T> onNo = null,
-            Action<T> onNone = null)
-            where T : class 
+        public OperationResult<T> Create<T>() where T : class
         {
-            var result = view.ShowDialog();
-            switch (result)
-            {
-                case DialogResult.OK:
-                    if (onOk != null) onOk(view.Model);
-                    break;
-                case DialogResult.Cancel:
-                    if (onCancel != null) onCancel(view.Model);
-                    break;
-                case DialogResult.Abort:
-                    if (onAbort != null) onAbort(view.Model);
-                    break;
-                case DialogResult.Retry:
-                    if (onRetry != null) onRetry(view.Model);
-                    break;
-                case DialogResult.Ignore:
-                    if (onIgnore != null) onIgnore(view.Model);
-                    break;
-                case DialogResult.Yes:
-                    if (onYes != null) onYes(view.Model);
-                    break;
-                case DialogResult.No:
-                    if (onNo != null) onNo(view.Model);
-                    break;
-                default:
-                    if (onNone != null) onNone(view.Model);
-                    break;
-            }
+            var view = Container.GetInstance<IView<T>>();
+            var controller = Container.GetInstance<ICController<T>>();
+            return controller.Create(view);
         }
 
-        public void Editor<TController, T>(
-            Func<TController, Func<IView<T>>> method,
-            Action<T> onOk) 
-            where T : class
+        public OperationResult<T> Edit<T>(T model) where T : class
         {
-            var view = method(Container.GetInstance<TController>())();
-            ProcessEdit(view, onOk);
+            var view = Container.GetInstance<IView<T>>();
+            view.Model = model;
+            var controller = Container.GetInstance<ICController<T>>();
+            return controller.Create(view);
         }
     }
 }
