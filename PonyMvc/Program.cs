@@ -21,6 +21,7 @@ namespace PonyMvc.Demo
                 scan.AssembliesFromApplicationBaseDirectory();
                 scan.TheCallingAssembly();
                 scan.AddAllTypesOf<IView>();
+                scan.AddAllTypesOf(typeof (IView<>));
                 scan.AddAllTypesOf<WinFormsController>();
             }));
             demoApp.Start<HomeController>(c => c.Index());

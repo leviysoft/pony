@@ -1,6 +1,6 @@
-﻿using System;
-using Pony;
+﻿using Pony;
 using Pony.Views;
+using PonyMvc.Demo.Domain;
 using PonyMvc.Demo.Home;
 
 namespace PonyMvc.Demo
@@ -11,9 +11,15 @@ namespace PonyMvc.Demo
         {
         }
 
-        public Lazy<IView> Index()
+        public IView Index()
         {
             return View<MainForm>();
         }
+
+        public IView<Item> AddItem()
+        {
+            var model = new Item();
+            return View(model);
+        } 
     }
 }

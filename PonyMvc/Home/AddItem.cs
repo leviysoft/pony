@@ -15,6 +15,6 @@ namespace PonyMvc.Demo.Home
             };
         }
 
-        public Item Model { get; private set; }
+        public Item Model { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Pony.Views;
 using StructureMap;
 
@@ -19,9 +20,24 @@ namespace Pony
             Container.Configure(config);
         }
 
-        public void Start<TController>(Func<TController, Lazy<IView>> action)
+        public void Start<TController>(Func<TController, IView> action)
         {
-            action(Container.GetInstance<TController>()).Value.ShowDialog();
+            action(Container.GetInstance<TController>()).ShowDialog();
+        }
+
+        public void Editor<TController, T>(
+            Func<TController, Func<IView<T>>> method,
+            Action<T> onOk) 
+            where T : class
+        {
+            var view = method(Container.GetInstance<TController>())();
+            var result = view.ShowDialog();
+            switch (result)
+            {
+                case DialogResult.OK:
+                    onOk(view.Model);
+                    break;
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Pony.Views;
+﻿using Pony.Views;
 
 namespace Pony
 {
@@ -12,11 +11,19 @@ namespace Pony
             Application = application;
         }
 
-        public Lazy<IView> View<TView>()
+        public IView View<TView>()
             where TView : IView
         {
             var view = Application.Container.GetInstance<TView>();
-            return new Lazy<IView>(() => view);
+            return view;
+        }
+
+        public IView<T> View<T>(T model) 
+            where T : class
+        {
+            var view = Application.Container.GetInstance<IView<T>>();
+            view.Model = model;
+            return view;
         }
     }
 }
