@@ -53,7 +53,7 @@
     <Compile Include="DAL\DataContext.cs" />
     <Compile Include="DAL\IDataContext.cs" />
     <Compile Include="Domain\Item.cs" />
-    <Compile Include="HomeController.cs" />
+    <Compile Include="ItemController.cs" />
     <Compile Include="Home\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>

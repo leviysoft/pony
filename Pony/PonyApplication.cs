@@ -36,9 +36,9 @@ namespace Pony
         public OperationResult<T> Edit<T>(T model) where T : class
         {
             var view = Container.GetInstance<IView<T>>();
-            view.Model = model;
-            var controller = Container.GetInstance<ICController<T>>();
-            return controller.Create(view);
+            view.Fill(model);
+            var controller = Container.GetInstance<IEController<T>>();
+            return controller.Edit(view);
         }
     }
 }

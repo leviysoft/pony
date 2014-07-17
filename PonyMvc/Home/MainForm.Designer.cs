@@ -60,6 +60,7 @@
             this.EditBtn.TabIndex = 2;
             this.EditBtn.Text = "Edit";
             this.EditBtn.UseVisualStyleBackColor = true;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
             // RemoveBtn
             // 

@@ -77,6 +77,7 @@
             this.Controls.Add(this.NameBox);
             this.Name = "AddItem";
             this.Text = "AddItem";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddItem_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

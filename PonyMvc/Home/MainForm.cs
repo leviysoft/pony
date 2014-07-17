@@ -23,15 +23,29 @@ namespace PonyMvc.Demo.Home
             var result = _application.Create<Item>();
             if (result.Status == OperationStatus.Completed)
             {
-                ItemList.Items.Clear();
-                foreach (var i in _context.Items)
-                {
-                    ItemList.Items.Add(i.Name + " " + i.Description);
-                }
+                ItemList.Items.Add(result.Result.Name + " " + result.Result.Description);
             }
             else
             {
                 MessageBox.Show("Failed to add...");
+            }
+        }
+
+        private void EditBtn_Click(object sender, System.EventArgs e)
+        {
+            if (ItemList.SelectedIndex > -1)
+            {
+                var index = ItemList.SelectedIndex;
+                var result = _application.Edit(_context.Items[index]);
+                if (result.Status == OperationStatus.Completed)
+                {
+                    ItemList.Items.RemoveAt(index);
+                    ItemList.Items.Add(result.Result.Name + " " + result.Result.Description);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to edit...");
+                }
             }
         }
     }
