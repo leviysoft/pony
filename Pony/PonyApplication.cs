@@ -4,9 +4,9 @@ using StructureMap;
 
 namespace Pony
 {
-    public class PonyApplication
+    public class PonyApplication : IPonyApplication
     {
-        protected IContainer Container;
+        public IContainer Container { get; protected set; }
 
         public PonyApplication()
         {
@@ -15,6 +15,7 @@ namespace Pony
 
         public virtual void ConfigureApplicationContainer(Action<ConfigurationExpression> config)
         {
+            Container.Configure(cfg => cfg.For<IPonyApplication>().Use<PonyApplication>());
             Container.Configure(config);
         }
 

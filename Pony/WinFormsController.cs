@@ -1,22 +1,21 @@
 ﻿using System;
 using Pony.Views;
-using StructureMap;
 
 namespace Pony
 {
     public class WinFormsController
     {
-        private readonly IContainer _container;
+        protected IPonyApplication Application { get; private set; }
 
-        protected WinFormsController(IContainer container)
+        protected WinFormsController(IPonyApplication application)
         {
-            _container = container;
+            Application = application;
         }
 
         public Lazy<IView> View<TView>()
             where TView : IView
         {
-            var view = _container.GetInstance<TView>();
+            var view = Application.Container.GetInstance<TView>();
             return new Lazy<IView>(() => view);
         }
     }
