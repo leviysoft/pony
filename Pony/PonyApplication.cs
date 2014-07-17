@@ -4,19 +4,16 @@ using StructureMap;
 
 namespace Pony
 {
-    public sealed class PonyApplication
+    public class PonyApplication
     {
-        private static readonly IContainer Container = ObjectFactory.Container;
-        private static readonly PonyApplication Instance = new PonyApplication();
+        protected IContainer Container;
 
-        //Required for correct static fields initialization.
-        static PonyApplication() {}
+        public PonyApplication()
+        {
+            Container = ObjectFactory.Container;
+        }
 
-        private PonyApplication() {}
-
-        public static PonyApplication AppInstance { get { return Instance; } }
-
-        public void ConfigureApplicationContainer(Action<ConfigurationExpression> config)
+        public virtual void ConfigureApplicationContainer(Action<ConfigurationExpression> config)
         {
             Container.Configure(config);
         }

@@ -15,14 +15,15 @@ namespace PonyMvc.Demo
         static void Main()
         {
             Application.EnableVisualStyles();
-            PonyApplication.AppInstance.ConfigureApplicationContainer(cfg => cfg.Scan(scan =>
+            var demoApp = new PonyApplication();
+            demoApp.ConfigureApplicationContainer(cfg => cfg.Scan(scan =>
             {
                 scan.AssembliesFromApplicationBaseDirectory();
                 scan.TheCallingAssembly();
                 scan.AddAllTypesOf<IView>();
                 scan.AddAllTypesOf<WinFormsController>();
             }));
-            PonyApplication.AppInstance.Start<HomeController>(c => c.Index());
+            demoApp.Start<HomeController>(c => c.Index());
         }
     }
 }
