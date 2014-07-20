@@ -10,7 +10,7 @@ namespace Pony.Views
     public interface IView<T> where T : class
     {
         T Model { get; }
-        void Fill(T model);
+        void SetModel(T model);
         DialogResult ShowDialog();
     }
 }
