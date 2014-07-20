@@ -28,9 +28,13 @@ namespace PonyMvc.Demo
                     scan.TheCallingAssembly();
                     scan.AddAllTypesOf<IView>();
                     scan.AddAllTypesOf(typeof (IView<>));
-                    scan.AddAllTypesOf<WinFormsController>();
                     scan.AddAllTypesOf(typeof (ICanCreate<>));
                     scan.AddAllTypesOf(typeof (ICanEdit<>));
+                    scan.AddAllTypesOf(typeof (IHandlesErrors<>));
+                    scan.AddAllTypesOf(typeof (IHandlesAbort<>));
+                    scan.AddAllTypesOf(typeof (IHandlesCancel<>));
+                    scan.AddAllTypesOf(typeof (IHandlesIgnore<>));
+                    scan.AddAllTypesOf(typeof (IHandlesRetry<>));
                 });
                 cfg.For<IDataContext>().Use(context);
             });

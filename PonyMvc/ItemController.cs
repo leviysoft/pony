@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Windows.Forms;
 using Pony;
 using Pony.ControllerInterfaces;
 using Pony.Views;
@@ -8,7 +7,7 @@ using PonyMvc.Demo.Domain;
 
 namespace PonyMvc.Demo
 {
-    public class ItemController : WinFormsController, ICanCreate<Item>, ICanEdit<Item>
+    public class ItemController : WinFormsController, ICanCreate<Item>, ICanEdit<Item>, IHandlesErrors<Item>
     {
         private IDataContext Context { get; set; }
 
@@ -19,23 +18,20 @@ namespace PonyMvc.Demo
 
         public OperationResult<Item> Create(IView<Item> view)
         {
-            if (view.ShowDialog() == DialogResult.OK)
-            {
-                Context.Items.Add(view.Model);
-                return OperationResult.Produce(OperationStatus.Completed, view.Model);
-            }
-            return OperationResult.Produce(OperationStatus.Cancelled, (Item)null);
+            Context.Items.Add(view.Model);
+            return OperationResult.Produce(OperationStatus.Completed, view.Model);
         }
 
         public OperationResult<Item> Edit(IView<Item> view)
         {
-            if (view.ShowDialog() == DialogResult.OK)
-            {
-                var exItem = Context.Items.SingleOrDefault(it => it.Uid == view.Model.Uid);
-                Context.Items.Remove(exItem);
-                Context.Items.Add(view.Model);
-                return OperationResult.Produce(OperationStatus.Completed, view.Model);
-            }
+            var exItem = Context.Items.SingleOrDefault(it => it.Uid == view.Model.Uid);
+            Context.Items.Remove(exItem);
+            Context.Items.Add(view.Model);
+            return OperationResult.Produce(OperationStatus.Completed, view.Model);
+        }
+
+        public OperationResult<Item> OnError(IView<Item> view)
+        {
             return OperationResult.Produce(OperationStatus.Cancelled, view.Model);
         }
     }
