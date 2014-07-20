@@ -29,8 +29,8 @@ namespace PonyMvc.Demo
                     scan.AddAllTypesOf<IView>();
                     scan.AddAllTypesOf(typeof (IView<>));
                     scan.AddAllTypesOf<WinFormsController>();
-                    scan.AddAllTypesOf(typeof (ICController<>));
-                    scan.AddAllTypesOf(typeof (IEController<>));
+                    scan.AddAllTypesOf(typeof (ICanCreate<>));
+                    scan.AddAllTypesOf(typeof (ICanEdit<>));
                 });
                 cfg.For<IDataContext>().Use(context);
             });

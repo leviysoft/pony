@@ -6,7 +6,7 @@ namespace Pony.ControllerInterfaces
     /// Supports creation of T
     /// </summary>
     /// <typeparam name="T">Model type</typeparam>
-    public interface ICController<T> where T : class
+    public interface ICanCreate<T> where T : class
     {
         OperationResult<T> Create(IView<T> view);
     }
@@ -15,7 +15,7 @@ namespace Pony.ControllerInterfaces
     /// Supports edition of T
     /// </summary>
     /// <typeparam name="T">Model type</typeparam>
-    public interface IEController<T> where T : class
+    public interface ICanEdit<T> where T : class
     {
         OperationResult<T> Edit(IView<T> view);
     }

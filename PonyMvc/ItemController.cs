@@ -8,7 +8,7 @@ using PonyMvc.Demo.Domain;
 
 namespace PonyMvc.Demo
 {
-    public class ItemController : WinFormsController, ICController<Item>, IEController<Item>
+    public class ItemController : WinFormsController, ICanCreate<Item>, ICanEdit<Item>
     {
         private IDataContext Context { get; set; }
 

@@ -29,7 +29,7 @@ namespace Pony
         public OperationResult<T> Create<T>() where T : class
         {
             var view = Container.GetInstance<IView<T>>();
-            var controller = Container.GetInstance<ICController<T>>();
+            var controller = Container.GetInstance<ICanCreate<T>>();
             return controller.Create(view);
         }
 
@@ -37,7 +37,7 @@ namespace Pony
         {
             var view = Container.GetInstance<IView<T>>();
             view.SetModel(model);
-            var controller = Container.GetInstance<IEController<T>>();
+            var controller = Container.GetInstance<ICanEdit<T>>();
             return controller.Edit(view);
         }
     }
