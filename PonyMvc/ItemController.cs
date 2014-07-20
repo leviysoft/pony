@@ -7,11 +7,11 @@ using PonyMvc.Demo.Domain;
 
 namespace PonyMvc.Demo
 {
-    public class ItemController : WinFormsController, ICanCreate<Item>, ICanEdit<Item>, IHandlesErrors<Item>
+    public class ItemController : ICanCreate<Item>, ICanEdit<Item>, IHandlesErrors<Item>
     {
         private IDataContext Context { get; set; }
 
-        public ItemController(IPonyApplication application, IDataContext context) : base(application)
+        public ItemController(IPonyApplication application, IDataContext context) : base()
         {
             Context = context;
         }

@@ -58,7 +58,6 @@
     <Compile Include="Views\View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinFormsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
