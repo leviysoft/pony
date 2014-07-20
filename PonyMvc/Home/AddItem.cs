@@ -10,6 +10,7 @@ namespace PonyMvc.Demo.Home
         {
             InitializeComponent();
             Bind(m => m.Name, (AddItem f) => f.NameBox);
+            Bind(m => m.Quantity, (AddItem f) => f.Quantity);
             Bind(m => m.Description, (AddItem f) => f.Description);
         }
     }
