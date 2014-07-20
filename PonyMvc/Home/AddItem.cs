@@ -1,11 +1,12 @@
-﻿using Pony.Views;
+﻿using Pony;
+using Pony.Views;
 using PonyMvc.Demo.Domain;
 
 namespace PonyMvc.Demo.Home
 {
     public partial class AddItem : ItemView, IView<Item>
     {
-        public AddItem()
+        public AddItem(IPonyApplication ponyApplication) : base(ponyApplication)
         {
             InitializeComponent();
             Bind(m => m.Name, (AddItem f) => f.NameBox);
@@ -13,5 +14,9 @@ namespace PonyMvc.Demo.Home
         }
     }
 
-    public class ItemView : View<Item> { }
+    public class ItemView : View<Item> {
+        public ItemView(IPonyApplication ponyApplication) : base(ponyApplication)
+        {
+        }
+    }
 }

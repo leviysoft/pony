@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Pony;
 using Pony.ControllerInterfaces;
+using Pony.Serialization;
 using Pony.Views;
 using PonyMvc.Demo.DAL;
 using PonyMvc.Demo.Home;
@@ -35,6 +36,7 @@ namespace PonyMvc.Demo
                     scan.AddAllTypesOf(typeof (IHandlesCancel<>));
                     scan.AddAllTypesOf(typeof (IHandlesIgnore<>));
                     scan.AddAllTypesOf(typeof (IHandlesRetry<>));
+                    scan.AddAllTypesOf(typeof (ISerializer<>));
                 });
                 cfg.For<IDataContext>().Use(context);
             });

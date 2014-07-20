@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Pony.ControllerInterfaces;
+using Pony.Serialization;
 using Pony.Views;
 using StructureMap;
 
@@ -8,7 +9,7 @@ namespace Pony
 {
     public class PonyApplication : IPonyApplication
     {
-        public IContainer Container { get; protected set; }
+        private IContainer Container { get; set; }
 
         public PonyApplication()
         {
@@ -89,6 +90,11 @@ namespace Pony
                     return defaultAction(view);
             }
         }
+
+        public ISerializer<T> GetSerializer<T>()
+        {
+            return Container.GetInstance<ISerializer<T>>();
+        } 
 
         public DialogResult Show<TView>() where TView : IView
         {
