@@ -16,6 +16,8 @@ namespace PonyMvc.Demo.Home
     }
 
     public class ItemView : View<Item> {
+        private ItemView() : base(null) { }
+
         public ItemView(IPonyApplication ponyApplication) : base(ponyApplication)
         {
         }
