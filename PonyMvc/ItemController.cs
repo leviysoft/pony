@@ -11,7 +11,7 @@ namespace PonyMvc.Demo
     {
         private IDataContext Context { get; set; }
 
-        public ItemController(IPonyApplication application, IDataContext context) : base()
+        public ItemController(IDataContext context)
         {
             Context = context;
         }
