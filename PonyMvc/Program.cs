@@ -3,9 +3,11 @@ using System.Windows.Forms;
 using Pony;
 using Pony.ControllerInterfaces;
 using Pony.Serialization;
+using Pony.StructureMap;
 using Pony.Views;
 using PonyMvc.Demo.DAL;
 using PonyMvc.Demo.Home;
+using StructureMap;
 using StructureMap.Graph;
 
 namespace PonyMvc.Demo
@@ -20,8 +22,8 @@ namespace PonyMvc.Demo
         {
             var context = new DataContext();
             Application.EnableVisualStyles();
-            var demoApp = new PonyApplication();
-            demoApp.ConfigureApplicationContainer(cfg =>
+
+            var structureMapContainer = new Container(cfg =>
             {
                 cfg.Scan(scan =>
                 {
@@ -40,6 +42,8 @@ namespace PonyMvc.Demo
                 });
                 cfg.For<IDataContext>().Use(context);
             });
+
+            var demoApp = new PonyApplication(new StructureMapPonyContainer(structureMapContainer));
             demoApp.Show<MainForm>();
         }
     }

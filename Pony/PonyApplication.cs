@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
 using Pony.ControllerInterfaces;
+using Pony.DI;
 using Pony.Serialization;
 using Pony.Views;
-using StructureMap;
 
 namespace Pony
 {
     public class PonyApplication : IPonyApplication
     {
-        private IContainer Container { get; set; }
+        private IPonyContainer Container { get; set; }
 
-        public PonyApplication()
+        public PonyApplication(IPonyContainer container)
         {
-            Container = ObjectFactory.Container;
-        }
-
-        public virtual void ConfigureApplicationContainer(Action<ConfigurationExpression> config)
-        {
-            Container.Configure(cfg => cfg.For<IPonyApplication>().Use<PonyApplication>());
-            Container.Configure(config);
+            Container = container;
+            Container.Register<IPonyApplication, PonyApplication>();
+            Container.RegisterInstance(container);
         }
 
         private OperationResult<T> ProcessDialogResult<T>(DialogResult viewResult, IView<T> view,
