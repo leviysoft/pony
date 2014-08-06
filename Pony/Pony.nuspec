@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Pony</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://bitbucket.org/danslapman/ponymvc/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MVC framework for WinForms</description>
+    <releaseNotes>Demo test</releaseNotes>
+    <copyright>danslapman, 2014</copyright>
+    <tags>winforms mvc</tags>
+  </metadata>
+</package>
