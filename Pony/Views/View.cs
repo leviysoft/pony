@@ -8,6 +8,7 @@ namespace Pony.Views
     public class View<T> : Form where T : class, new()
     {
         private readonly IPonyApplication _ponyApplication;
+        private readonly ErrorProvider _viewErrorProvider;
 
         public T Model { get; private set; }
 
@@ -17,8 +18,14 @@ namespace Pony.Views
 
         protected View(IPonyApplication ponyApplication)
         {
+            _viewErrorProvider = new ErrorProvider(this);
             _ponyApplication = ponyApplication;
             FormClosing += (sender, args) => { if (Model == null) Model = new T(); };
+            FormClosing += (sender, args) =>
+            {
+                if (DialogResult == DialogResult.OK || DialogResult == DialogResult.Retry)
+                    args.Cancel = !ValidateChildren();
+            };
         }
 
         public void SetModel(T model)
@@ -41,26 +48,27 @@ namespace Pony.Views
             var control = (TextBoxBase)formProperty.GetValue(this);
 
             ModelChanged += () => control.Text = _ponyApplication.GetSerializer<TBind>().Serialize((TBind)modelProperty.GetValue(Model));
-            FormClosing += (sender, args) =>
+
+            control.Validating += (sender, args) =>
             {
+                var error = "";
                 try
                 {
-                    modelProperty.SetValue(Model,
-                        _ponyApplication.GetSerializer<TBind>().Deserialize(control.Text));
+                    _ponyApplication.GetSerializer<TBind>().Deserialize(control.Text);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
-                    var confirmation = MessageBox.Show(string.Format("Can't bind field {0}, correct the value?",
-                       modelProperty.Name), "Binding error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (confirmation == DialogResult.Yes)
-                    {
-                        args.Cancel = true;
-                    }
-                    else
-                    {
-                        DialogResult = DialogResult.Abort;
-                    }
+                    error = "Invalid value format";
+                    args.Cancel = true;
                 }
+                _viewErrorProvider.SetError((Control)sender, error);
+            };
+
+            FormClosing += (sender, args) =>
+            {
+                if (args.Cancel) return;
+                if (DialogResult == DialogResult.OK || DialogResult == DialogResult.Retry)
+                    modelProperty.SetValue(Model, _ponyApplication.GetSerializer<TBind>().Deserialize(control.Text));
             };
         }
     }
