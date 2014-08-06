@@ -12,6 +12,5 @@
     <releaseNotes>Demo test</releaseNotes>
     <copyright>danslapman, 2014</copyright>
     <tags>winforms mvc</tags>
-    $dependencies$
   </metadata>
 </package>
