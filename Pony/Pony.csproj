@@ -49,6 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\StringSerializationStub.cs" />
+    <Compile Include="Validation\DateIsGreaterAttribute.cs" />
+    <Compile Include="Validation\DateIsInRangeAttribute.cs" />
+    <Compile Include="Validation\DateIsLessAttribute.cs" />
     <Compile Include="Validation\IntIsGreaterAttribute.cs" />
     <Compile Include="Validation\IntIsInRangeAttribute.cs" />
     <Compile Include="Validation\IntIsLessAttribute.cs" />
