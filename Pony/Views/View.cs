@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Forms;
+using Pony.Validation;
 
 namespace Pony.Views
 {
@@ -47,6 +49,9 @@ namespace Pony.Views
             var formProperty = (FieldInfo)formMember.Member;
             var control = (TextBoxBase)formProperty.GetValue(this);
 
+            var propertyValidationAttributes =
+                modelProperty.GetCustomAttributes<PropertyValidationAttribute>(true).ToList();
+
             ModelChanged += () => control.Text = _ponyApplication.GetSerializer<TBind>().Serialize((TBind)modelProperty.GetValue(Model));
 
             control.Validating += (sender, args) =>
@@ -54,7 +59,16 @@ namespace Pony.Views
                 var error = "";
                 try
                 {
-                    _ponyApplication.GetSerializer<TBind>().Deserialize(control.Text);
+                    var value = _ponyApplication.GetSerializer<TBind>().Deserialize(control.Text);
+                    foreach (var attribute in propertyValidationAttributes)
+                    {
+                        if (!attribute.GetValidator()(value))
+                        {
+                            error = attribute.ErrorMessage;
+                            args.Cancel = true;
+                            break;
+                        }    
+                    }
                 }
                 catch (Exception)
                 {
