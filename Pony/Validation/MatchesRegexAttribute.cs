@@ -3,11 +3,11 @@ using System.Text.RegularExpressions;
 
 namespace Pony.Validation
 {
-    public class ValidateAgainstRegexAttribute : PropertyValidationAttribute
+    public class MatchesRegexAttribute : PropertyValidationAttribute
     {
         private readonly Regex _regex;
 
-        public ValidateAgainstRegexAttribute(string regex, string errorMessage) : base(errorMessage)
+        public MatchesRegexAttribute(string regex, string errorMessage) : base(errorMessage)
         {
             _regex = new Regex(regex);
         }
