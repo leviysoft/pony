@@ -14,6 +14,12 @@ namespace PonyMvc.Demo.Home
             Bind(m => m.Quantity, (AddItem f) => f.Quantity);
             Bind(m => m.Description, (AddItem f) => f.Description);
         }
+
+
+        public new ViewResult ShowDialog()
+        {
+            return (ViewResult)base.ShowDialog();
+        }
     }
 
     public class ItemView : View<Item> {

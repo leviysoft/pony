@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using Pony.ControllerInterfaces;
 using Pony.DI;
 using Pony.Serialization;
@@ -18,18 +17,18 @@ namespace Pony
             Container.RegisterInstance(container);
         }
 
-        private OperationResult<T> ProcessDialogResult<T>(DialogResult viewResult, IView<T> view,
+        private OperationResult<T> ProcessDialogResult<T>(ViewResult viewResult, IView<T> view,
             Func<IView<T>, OperationResult<T>> defaultAction) 
             where T : class
         {
             IHandlesErrors<T> errorControler;
             switch (viewResult)
             {
-                case DialogResult.OK:
-                case DialogResult.Yes:
-                case DialogResult.No:
+                case ViewResult.OK:
+                case ViewResult.Yes:
+                case ViewResult.No:
                     return defaultAction(view);
-                case DialogResult.Abort:
+                case ViewResult.Abort:
                     var abortController = Container.TryGetInstance<IHandlesAbort<T>>();
                     if (abortController != null)
                     {
@@ -41,7 +40,7 @@ namespace Pony
                         return errorControler.OnError(view);
                     }
                     return defaultAction(view);
-                case DialogResult.Cancel:
+                case ViewResult.Cancel:
                     var cancelController = Container.TryGetInstance<IHandlesCancel<T>>();
                     if (cancelController != null)
                     {
@@ -53,7 +52,7 @@ namespace Pony
                         return errorControler.OnError(view);
                     }
                     return defaultAction(view);
-                case DialogResult.Ignore:
+                case ViewResult.Ignore:
                     var ignoreController = Container.TryGetInstance<IHandlesIgnore<T>>();
                     if (ignoreController != null)
                     {
@@ -65,7 +64,7 @@ namespace Pony
                         return errorControler.OnError(view);
                     }
                     return defaultAction(view);
-                case DialogResult.Retry:
+                case ViewResult.Retry:
                     var retryController = Container.TryGetInstance<IHandlesRetry<T>>();
                     if (retryController != null)
                     {
@@ -92,7 +91,7 @@ namespace Pony
             return Container.GetInstance<ISerializer<T>>();
         } 
 
-        public DialogResult Show<TView>() where TView : IView
+        public ViewResult Show<TView>() where TView : IView
         {
             return Container.GetInstance<TView>().ShowDialog();
         }

@@ -48,5 +48,10 @@ namespace PonyMvc.Demo.Home
                 }
             }
         }
+
+        public new ViewResult ShowDialog()
+        {
+            return (ViewResult) base.ShowDialog();
+        }
     }
 }
