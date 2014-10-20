@@ -106,6 +106,10 @@
       <Project>{54C47ACF-593E-4982-9502-D800973E3122}</Project>
       <Name>Pony.StructureMap</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pony.Windows.Forms\Pony.Windows.Forms.csproj">
+      <Project>{15e776c8-2562-407c-b285-619dee684bc7}</Project>
+      <Name>Pony.Windows.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pony\Pony.csproj">
       <Project>{5A9C5914-35E0-43CA-9A91-AAFE7B210E58}</Project>
       <Name>Pony</Name>

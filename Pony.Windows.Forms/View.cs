@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using Pony.Validation;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Forms;
-using Pony.Validation;
+using System.Linq;
 
-namespace Pony.Views
+namespace Pony.Windows.Forms
 {
     public class View<T> : Form where T : class, new()
     {

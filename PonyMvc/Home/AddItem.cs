@@ -1,5 +1,6 @@
 ﻿using Pony;
 using Pony.Views;
+using Pony.Windows.Forms;
 using PonyMvc.Demo.Domain;
 
 namespace PonyMvc.Demo.Home
