@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pony.Windows.Forms")]
 [assembly: AssemblyDescription("WinForms view frontend for Pony")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("danslapman")]
+[assembly: AssemblyCompany("LeviySoft")]
 [assembly: AssemblyProduct("Pony.Windows.Forms")]
-[assembly: AssemblyCopyright("Copyright ©danslapman 2014")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

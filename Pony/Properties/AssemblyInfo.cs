@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pony")]
 [assembly: AssemblyDescription("MVC framework for desktop applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("danslapman")]
+[assembly: AssemblyCompany("LeviySoft")]
 [assembly: AssemblyProduct("Pony")]
-[assembly: AssemblyCopyright("Copyright ©danslapman 2014")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

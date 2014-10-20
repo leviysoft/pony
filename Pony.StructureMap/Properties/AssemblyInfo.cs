@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pony.StructureMap")]
 [assembly: AssemblyDescription("StructureMap bindings for Pony")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("danslapman")]
+[assembly: AssemblyCompany("LeviySoft")]
 [assembly: AssemblyProduct("Pony.StructureMap")]
-[assembly: AssemblyCopyright("Copyright ©danslapman 2014")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
