@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Pony.Windows.Forms")]
-[assembly: AssemblyDescription("MVC framework for WinForms")]
+[assembly: AssemblyDescription("WinForms view frontend form Pony")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("danslapman")]
 [assembly: AssemblyProduct("Pony.Windows.Forms")]
-[assembly: AssemblyCopyright("Copyright © danslapman 2014")]
+[assembly: AssemblyCopyright("Copyright ©danslapman 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
