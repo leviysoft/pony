@@ -27,8 +27,7 @@ The aim of the project is to bring every WinForms developer to a beautiful world
 where pink ponies are eating butterflies and pooping rainbows :) And, of course,
 in this world there are no more problems with binding data or testing logic.
 
-The project now is in active development stage, so, it's not released yet.
-But You are already able to clone it and check PonyMvc.Demo project, and, maybe,
-try to write Your own project using Pony.
+Pony framework core and releated packages are available via nuget:
+http://www.nuget.org/packages/Pony/
 
 Any feedback is welcome, feel free to use issue tracker!
