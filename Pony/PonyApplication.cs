@@ -98,17 +98,21 @@ namespace Pony
 
         public OperationResult<T> Create<T>() where T : class
         {
-            var view = Container.GetInstance<IView<T>>();
-            var viewResult = view.ShowDialog();
-            return ProcessDialogResult(viewResult, view, Container.GetInstance<ICanCreate<T>>().Create);
+            using (var view = Container.GetInstance<IView<T>>())
+            {
+                var viewResult = view.ShowDialog();
+                return ProcessDialogResult(viewResult, view, Container.GetInstance<ICanCreate<T>>().Create);
+            }
         }
 
         public OperationResult<T> Edit<T>(T model) where T : class
         {
-            var view = Container.GetInstance<IView<T>>();
-            view.SetModel(model);
-            var viewResult = view.ShowDialog();
-            return ProcessDialogResult(viewResult, view, Container.GetInstance<ICanEdit<T>>().Edit);
+            using (var view = Container.GetInstance<IView<T>>())
+            {
+                view.SetModel(model);
+                var viewResult = view.ShowDialog();
+                return ProcessDialogResult(viewResult, view, Container.GetInstance<ICanEdit<T>>().Edit);
+            }
         }
     }
 }
