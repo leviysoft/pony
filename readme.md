@@ -23,7 +23,7 @@ Pony MVC Framework
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PonyMvc is a MVC framework for desktop .NET applications inspired by ASP.NET MVC.
-The aim of the project is to bring every WinForms developer to a beautiful world
+The aim of the project is to bring every desktop apps developer to a beautiful world
 where pink ponies are eating butterflies and pooping rainbows :) And, of course,
 in this world there are no more problems with binding data or testing logic.
 
