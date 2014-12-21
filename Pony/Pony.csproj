@@ -54,6 +54,7 @@
     <Compile Include="Validation\IntIsGreaterAttribute.cs" />
     <Compile Include="Validation\IntIsInRangeAttribute.cs" />
     <Compile Include="Validation\IntIsLessAttribute.cs" />
+    <Compile Include="Validation\NotEmptyAttribute.cs" />
     <Compile Include="Validation\PropertyValidationAttribute.cs" />
     <Compile Include="Validation\MatchesRegexAttribute.cs" />
     <Compile Include="ViewResult.cs" />
