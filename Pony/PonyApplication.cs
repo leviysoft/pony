@@ -13,8 +13,6 @@ namespace Pony
         public PonyApplication(IPonyContainer container)
         {
             Container = container;
-            Container.Register<IPonyApplication, PonyApplication>();
-            Container.RegisterInstance(container);
         }
 
         private OperationResult<T> ProcessDialogResult<T>(ViewResult viewResult, IView<T> view,

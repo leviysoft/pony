@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Pony;
 using Pony.ControllerInterfaces;
+using Pony.DI;
 using Pony.Serialization;
 using Pony.StructureMap;
 using Pony.Views;
@@ -41,9 +42,11 @@ namespace PonyMvc.Demo
                     scan.AddAllTypesOf(typeof (ISerializer<>));
                 });
                 cfg.For<IDataContext>().Use(context);
+                cfg.For<IPonyApplication>().Use<PonyApplication>();
+                cfg.For<IPonyContainer>().Use<StructureMapPonyContainer>();
             });
 
-            var demoApp = new PonyApplication(new StructureMapPonyContainer(structureMapContainer));
+            var demoApp = structureMapContainer.GetInstance<IPonyApplication>();
             demoApp.Show<MainForm>();
         }
     }
