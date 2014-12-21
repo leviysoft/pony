@@ -12,16 +12,6 @@ namespace Pony.StructureMap
             _container = container;
         }
 
-        public void Register<T, TInst>() where TInst : T
-        {
-            _container.Configure(cfg => cfg.For<T>().Use<TInst>());
-        }
-
-        public void RegisterInstance<T>(T instance) where T : class
-        {
-            _container.Configure(cfg => cfg.For<T>().Use(instance));
-        }
-
         public T GetInstance<T>()
         {
             return _container.GetInstance<T>();
